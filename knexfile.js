@@ -13,7 +13,7 @@ module.exports = {
 		},
 		pool: {
 			afterCreate: (conn, done) => {
-				conn.run('PRAGMA foreign_keys = ON', done)
+				conn.run('PRAGMA foreign_keys = OFF', done)
 			},
 		},
 	},
@@ -21,7 +21,7 @@ module.exports = {
 	testing: {
 		client: 'sqlite3',
 		connection: {
-			filename: './data/test.db3',
+			filename: './data/tasty_test.db3',
 		},
 		useNullAsDefault: true,
 		migrations: {
@@ -35,8 +35,7 @@ module.exports = {
 				conn.run('PRAGMA foreign_keys=ON', done)
 			},
 		},
-  },
-
+	},
 	production: {
 		client: 'pg',
 		connection: process.env.DATABASE_URL,
@@ -46,4 +45,5 @@ module.exports = {
 		seeds: {
 			directory: './data/seeds',
 		},
-		},
+	},
+}
