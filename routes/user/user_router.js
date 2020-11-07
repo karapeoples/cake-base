@@ -118,7 +118,46 @@ router.get("/clerk/:id", (req, res) => {
     );
 });
 
+router.get('/clerk_info/:id', (req, res) => {
+	const { id } = req.params
+	User.findClerkInfoByClerkId(id)
+		.then((clerks) => {
+			if (!clerks) {
+				res.status(400).json({ message: `No clerk with the id of ${id}` })
+			} else {
+				res.status(200).json(clerks)
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({
+				errorMsg: error.message,
+				message: `No clerks with the id of ${id}`,
+			}),
+		)
+})
 
+router.delete('/del_clerk/:id', (req, res, next) => {
+	const { id } = req.params
+	User.findRoleInfoByClerkId(id)
+		.then((user) => {
+			if (!user) {
+				next(`There is no clerk with the id of ${id} to delete`)
+			} else {
+				User.removeClerk(id).then((removed) => {
+					res.status(200).json({
+						message: `Removed clerk id ${id} from the database`,
+						removedUser: user,
+					})
+				})
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({
+				errorMsg: error.message,
+				message: `There is no clerk with the id of ${id} to delete`,
+			}),
+		)
+})
 
 //patient
 router.get('/patient', (req, res) => {
@@ -253,8 +292,45 @@ router.get('/admin/:id', (req, res) => {
 		)
 })
 
-
-
+router.get('/admin_info/:id', (req, res) => {
+	const { id } = req.params
+	User.findAdminInfoByAdminId(id)
+		.then((admins) => {
+			if (!admins) {
+				res.status(400).json({ message: `No admin with the id of ${id}` })
+			} else {
+				res.status(200).json(admins)
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({
+				errorMsg: error.message,
+				message: `No admins with the id of ${id}`,
+			}),
+		)
+})
+router.delete('/del_admin/:id', (req, res, next) => {
+	const { id } = req.params
+	User.findRoleInfoByAdminId(id)
+		.then((user) => {
+			if (!user) {
+				next(`There is no admin with the id of ${id} to delete`)
+			} else {
+				User.removeAdmin(id).then((removed) => {
+					res.status(200).json({
+						message: `Removed admin id ${id} from the database`,
+						removedUser: user,
+					})
+				})
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({
+				errorMsg: error.message,
+				message: `There is no admin with the id of ${id} to delete`,
+			}),
+		)
+})
 
 
 
