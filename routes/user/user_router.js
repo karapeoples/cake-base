@@ -4,6 +4,17 @@ const router = express.Router()
 const User = require('./user_model.js')
 
 // all users
+router.get('/all_user', (req, res) => {
+	User.findUser()
+		.then((user) => {
+			if (!user) {
+				res.status(400).json({ message: 'There are no users!' })
+			} else {
+				res.status(200).json(user)
+			}
+		})
+		.catch((error) => res.status(500).json({ errorMsg: error.message, message: 'There are no clerks!' }))
+})
 router.get('/all_user/:id', (req, res) => {
  const { id } = req.params
 	User.findUserById(id)
@@ -49,6 +60,29 @@ router.put('/all_user/:id', async (req, res, next) => {
 				})
 			})
 	}
+})
+
+router.delete('/all_user/:id', (req, res, next) => {
+	const { id } = req.params
+	User.findUserById(id)
+		.then((user) => {
+			if (!user) {
+				next(`There is no user with the id of ${id} to delete`)
+			} else {
+				User.removeUser(id).then((removed) => {
+					res.status(200).json({
+						message: `Removed ${removed} user from the database`,
+						removedUser: user,
+					})
+				})
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({
+				errorMsg: error.message,
+				message: `There is no user with the id of ${id} to delete`,
+			}),
+		)
 })
 //clerk
 
@@ -162,6 +196,28 @@ router.put('/card/:id', async (req, res, next) => {
 				})
 			})
 	}
+})
+router.delete('/card/:id', (req, res, next) => {
+	const { id } = req.params
+	User.findPatientCard(id)
+		.then((user) => {
+			if (!user) {
+				next(`There is no user with the id of ${id} to delete`)
+			} else {
+				User.removeCard(id).then((removed) => {
+					res.status(200).json({
+						message: `Removed user id ${id} from the database`,
+						removedUser: user,
+					})
+				})
+			}
+		})
+		.catch((error) =>
+			res.status(500).json({
+				errorMsg: error.message,
+				message: `There is no user with the id of ${id} to delete`,
+			}),
+		)
 })
 
 //admin

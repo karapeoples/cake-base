@@ -4,23 +4,37 @@ module.exports = {
   //clerk
   findClerk,
   findClerkById,
-  removeClerk,
   //patient
-  findPatient,
+	findPatient,
+	findPatientCard,
 	findPatientById,
 	findPatientCardByPatientId,
-  updateCard,
-  removePatient,
+	updateCard,
+	removeCard,
   //admin
   findAdmin,
   findAdminById,
-	removeAdmin,
+//user
+	findUser,
 	findUserById,
 	updateUser,
+	removeUser,
 }
 
+function findUser() {
+	return db('patient')
+}
 function findUserById(id) {
 	return db('newUser').where('newUser.id',id).first()
+}
+async function updateUser(id, changes) {
+	await db('newUser').where({id}).update(changes)
+  return findUserById(id)
+}
+async function removeUser(id) {
+	const removed = await db('newUser').where({ id }).del()
+
+	return removed
 }
 
 //clerk
@@ -46,16 +60,9 @@ async function findClerkById(id) {
 		.first()
 }
 
-async function updateUser(id, changes) {
-	await db('newUser').where({id}).update(changes)
-  return findUserById(id)
-}
 
-async function removeClerk(id) {
-	const removed = await db('clerk').where({ id }).del()
 
-	return removed
-}
+
 //patient
 function findPatient() {
 	return db('patient as p')
@@ -76,6 +83,9 @@ async function findPatientById(id) {
 		.first()
 }
 
+function findPatientCard(id) {
+	return db('patient').where('patient.id', id).first()
+}
 async function findPatientCardByPatientId(id) {
 	return await db('patient as p')
 		.where('p.id', id)
@@ -89,11 +99,10 @@ async function updateCard(id, changes) {
 	return findPatientCardByPatientId(id)
 }
 
-async function removePatient(id) {
-	const removed = await db('patient').where({ id }).del()
-
-	return removed
+async function removeCard(id) {
+	await db('patient').where({ id }).del()
 }
+
 
 //admin
 function findAdmin() {
@@ -115,8 +124,3 @@ async function findAdminById(id) {
 }
 
 
-async function removeAdmin(id) {
-	const removed = await db('admin').where({ id }).del()
-
-	return removed
-}
