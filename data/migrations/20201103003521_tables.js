@@ -12,7 +12,7 @@ exports.up = function (knex) {
       admins.increments()
 			admins.integer('user_id').unsigned().references('id').inTable('newUser').onDelete('CASCADE').onUpdate('CASCADE')
 		})
-		.createTable('patient', (patient) => {
+		.createTable('why is onD', (patient) => {
       patient.increments()
       patient.string('card', 255).notNullable().unique()
 			patient.integer('user_id').unsigned().references('id').inTable('newUser').onDelete('CASCADE').onUpdate('CASCADE')

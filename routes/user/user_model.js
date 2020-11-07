@@ -1,20 +1,26 @@
 const db = require('../../data/dbConfig')
 
 module.exports = {
-  //clerk
-  findClerk,
-  findClerkById,
-  //patient
+	//clerk
+	findClerk,
+	findClerkById,
+	findClerkInfoByClerkId,
+	findRoleInfoByClerkId,
+	removeClerk,
+	//patient
 	findPatient,
 	findPatientCard,
 	findPatientById,
 	findPatientCardByPatientId,
 	updateCard,
 	removeCard,
-  //admin
-  findAdmin,
-  findAdminById,
-//user
+	//admin
+	findAdmin,
+	findAdminById,
+	findAdminInfoByAdminId,
+	findRoleInfoByAdminId,
+	removeAdmin,
+	//user
 	findUser,
 	findUserById,
 	updateUser,
@@ -22,7 +28,7 @@ module.exports = {
 }
 
 function findUser() {
-	return db('patient')
+	return db('newUser')
 }
 function findUserById(id) {
 	return db('newUser').where('newUser.id',id).first()
@@ -60,7 +66,20 @@ async function findClerkById(id) {
 		.first()
 }
 
+async function findClerkInfoByClerkId(id) {
+	return await db('clerk as c')
+		.where('c.id', id)
+		.join('newUser as u', 'c.user_id', '=', 'u.id')
+		.select('u.fullName', 'c.*')
+		.first()
+}
 
+function findRoleInfoByClerkId(id) {
+	return db('clerk').where('clerk.id', id).first()
+}
+async function removeClerk(id) {
+	await db('clerk').where({ id }).del()
+}
 
 
 //patient
@@ -123,4 +142,16 @@ async function findAdminById(id) {
 		.first()
 }
 
-
+async function findAdminInfoByAdminId(id) {
+	return await db('admin as a')
+		.where('a.id', id)
+		.join('newUser as u', 'a.user_id', '=', 'u.id')
+		.select('u.fullName', 'a.*')
+		.first()
+}
+function findRoleInfoByAdminId(id) {
+	return db('admin').where('admin.id', id).first()
+}
+async function removeAdmin(id) {
+	await db('admin').where({ id }).del()
+}
