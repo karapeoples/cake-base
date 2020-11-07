@@ -43,7 +43,7 @@ router.post('/register', async (req, res, next) => {
 			case 'patient':
 				roleInfo = {
 					user_id: newUserId,
-					patient_card: req.body.card
+					card: req.body.card
 				}
 				userRole = await regUser.addPatient(roleInfo)
 				break
@@ -66,7 +66,7 @@ router.post('/register', async (req, res, next) => {
 	}
 })
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req, res) => {
 	if (!req.body || !req.body.password || !req.body.email) {
 		next('A valid email and password are required.')
 	} else {
