@@ -30,9 +30,9 @@ BASE ROUTE: BASEURL/user
 |ADMIN-ROUTES| REQUEST TYPES | ENDPOINTS|
 |-----------|--------------|---------|
 |Admins| GET | /admin|
-|Admins By ID |GET | /clerk/:admin_id|
+|Admins By ID |GET | /admin/:admin_id|
 |Single Admin Role Info | GET | /admin_info/:admin_id|
-|Delete Admin Role Info|DELETE|/del_clerk/:admin_id|
+|Delete Admin Role Info|DELETE|/del_admin/:admin_id|
 
 
 
