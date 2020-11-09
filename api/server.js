@@ -12,7 +12,7 @@ const userRouter = require('../routes/user/user_router')
 
 server.use(helmet(), morgan('dev'), express.json(), cors())
 server.use('/api/auth', authRouter)
-server.use('/api/user', auth, userRouter)
+server.use('/api/user',  auth,  userRouter)
 
 
 server.get('/', (req, res) => {
