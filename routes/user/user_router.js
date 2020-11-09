@@ -66,24 +66,25 @@ router.delete('/all_user/:id', (req, res, next) => {
 	const { id } = req.params
 	User.findUserById(id)
 		.then((user) => {
-			if (!user) {
-				next(`There is no user with the id of ${id} to delete`)
-			} else {
+			user ?
 				User.removeUser(id).then((removed) => {
-					res.status(200).json({
-						message: `Removed ${removed} user from the database`,
-						removedUser: user,
-					})
+					removed ?
+						res.status(200).json({
+							message: `Removed user id ${id} from the database`,
+							removedUser: user,
+						})
+						: null
 				})
-			}
+				: null
 		})
-		.catch((error) =>
-			res.status(500).json({
-				errorMsg: error.message,
-				message: `There is no user with the id of ${id} to delete`,
-			}),
-		)
-})
+					.catch((error) =>
+						res.status(500).json({
+							errorMsg: error.message,
+							message: `There is no user with the id of ${id} to delete`,
+						}),
+					)
+		})
+
 //clerk
 
 router.get('/clerk', (req, res) => {
@@ -138,26 +139,26 @@ router.get('/clerk_info/:id', (req, res) => {
 
 router.delete('/del_clerk/:id', (req, res, next) => {
 	const { id } = req.params
-	User.findRoleInfoByClerkId(id)
-		.then((user) => {
-			if (!user) {
-				next(`There is no clerk with the id of ${id} to delete`)
-			} else {
-				User.removeClerk(id).then((removed) => {
-					res.status(200).json({
-						message: `Removed clerk id ${id} from the database`,
-						removedUser: user,
-					})
-				})
-			}
-		})
-		.catch((error) =>
-			res.status(500).json({
-				errorMsg: error.message,
-				message: `There is no clerk with the id of ${id} to delete`,
-			}),
-		)
-})
+	User.findRoleInfoByClerkId(id).then((user) => {
+		user
+			? User.removeClerk(id).then((removed) => {
+					removed
+						? res.status(200).json({
+								message: `Removed clerk id ${id} from the database`,
+								removedUser: user,
+						  })
+						: null
+			  })
+			: null
+	})
+				.catch((error) =>
+					res.status(500).json({
+						errorMsg: error.message,
+						message: `There is no clerk with the id of ${id} to delete`,
+					}),
+			  )
+	})
+
 
 //patient
 router.get('/patient', (req, res) => {
@@ -238,26 +239,26 @@ router.put('/card/:id', async (req, res, next) => {
 })
 router.delete('/card/:id', (req, res, next) => {
 	const { id } = req.params
-	User.findPatientCard(id)
-		.then((user) => {
-			if (!user) {
-				next(`There is no user with the id of ${id} to delete`)
-			} else {
-				User.removeCard(id).then((removed) => {
-					res.status(200).json({
-						message: `Removed user id ${id} from the database`,
-						removedUser: user,
-					})
-				})
-			}
-		})
-		.catch((error) =>
-			res.status(500).json({
-				errorMsg: error.message,
-				message: `There is no user with the id of ${id} to delete`,
-			}),
-		)
-})
+	User.findPatientCard(id).then((user) => {
+		user
+			? User.removeCard(id).then((removed) => {
+					removed
+						? res.status(200).json({
+								message: `Removed card from patient id ${id} from the database`,
+								removedUser: user,
+						  })
+						: null
+			  })
+			: null
+	})
+				.catch((error) =>
+					res.status(500).json({
+						errorMsg: error.message,
+						message: `There is no card associated with the user with the id of ${id} to delete`,
+					}),
+			  )
+	})
+
 
 //admin
 
@@ -311,26 +312,26 @@ router.get('/admin_info/:id', (req, res) => {
 })
 router.delete('/del_admin/:id', (req, res, next) => {
 	const { id } = req.params
-	User.findRoleInfoByAdminId(id)
-		.then((user) => {
-			if (!user) {
-				next(`There is no admin with the id of ${id} to delete`)
-			} else {
-				User.removeAdmin(id).then((removed) => {
-					res.status(200).json({
-						message: `Removed admin id ${id} from the database`,
-						removedUser: user,
-					})
-				})
-			}
-		})
-		.catch((error) =>
-			res.status(500).json({
-				errorMsg: error.message,
-				message: `There is no admin with the id of ${id} to delete`,
-			}),
-		)
-})
+	User.findRoleInfoByAdminId(id).then((user) => {
+		user
+			? User.removeAdmin(id).then((removed) => {
+					removed
+						? res.status(200).json({
+								message: `Removed admin id ${id} from the database`,
+								removedUser: user,
+						  })
+						: null
+			})
+			:null
+			})
+				.catch((error) =>
+					res.status(500).json({
+						errorMsg: error.message,
+						message: `There is no admin with the id of ${id} to delete`,
+					}),
+			  )
+	})
+
 
 
 
