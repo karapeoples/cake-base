@@ -215,7 +215,7 @@ router.put('/card/:id', async (req, res, next) => {
 	} else {
 		const updates = req.body
 		const id = req.params.id
-		User.findPatientCardByPatientId(id)
+		User.findPatientCard(id)
 			.then((card) => {
 				if (!card) {
 					next(`There is no user with the id of ${id} to update`)
