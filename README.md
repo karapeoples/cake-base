@@ -35,4 +35,27 @@ BASE ROUTE: BASEURL/user
 |Delete Admin Role Info|DELETE|/del_admin/:admin_id|
 
 
+BASE ROUTE: BASEURL/strain
 
+|FLOWER-ROUTES| REQUEST TYPES | ENDPOINTS|
+|-----------|--------------|---------|
+|Flowers| GET | /flower|
+|Flower By Name| GET | /flower/name/:name|
+|Flower By Id |GET | /flower/:flower_id|
+|Add Flower|POST|/flower|
+|Update Flower|PUT|/flower/:flower_id|
+
+
+|CURRENT_FLOWER-ROUTES| REQUEST TYPES | ENDPOINTS|
+|-----------|--------------|---------|
+|Current Flower| GET | /flower_stock|
+|Current Flower By Id |GET | /flower_stock/:currentFlower_id|
+|Add Current Flower|POST |/flower_stock|
+|Delete Current Flower|DELETE|/flower_stock/:currentFlower_id|
+
+|IN_HOUSE_PREROLL-ROUTES| REQUEST TYPES | ENDPOINTS|
+|-----------|--------------|---------|
+|Pre-rolls | GET | /preRoll|
+|Pre-rolls By Id |GET | /preRoll/:preRoll_id|
+|Add Pre-rolls|POST |/preRoll|
+|Delete Pre-Roll|DELETE|/preRoll/:preRoll_id|

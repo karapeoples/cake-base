@@ -6,6 +6,7 @@ const server = express()
 const auth = require('../routes/auth/restricted-middleware')
 const authRouter = require('../routes/auth/auth_router')
 const userRouter = require('../routes/user/user_router')
+const flowerRouter = require('../routes/product/flower_router')
 
 
 
@@ -13,6 +14,7 @@ const userRouter = require('../routes/user/user_router')
 server.use(helmet(), morgan('dev'), express.json(), cors())
 server.use('/api/auth', authRouter)
 server.use('/api/user',  auth,  userRouter)
+server.use('/api/strain',    flowerRouter)
 
 
 server.get('/', (req, res) => {

@@ -13,7 +13,7 @@ router.get('/all_user', (req, res) => {
 				res.status(200).json(user)
 			}
 		})
-		.catch((error) => res.status(500).json({ errorMsg: error.message, message: 'There are no clerks!' }))
+		.catch((error) => res.status(500).json({ errorMsg: error.message, message: 'There are no users!' }))
 })
 router.get('/all_user/:id', (req, res) => {
  const { id } = req.params
