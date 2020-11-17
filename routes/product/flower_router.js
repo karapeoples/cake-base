@@ -130,8 +130,9 @@ router.post('/flower_stock', (req, res) => {
   Flowers.findBy(name)
     .then((flower) => {
       const inStock = {
-    is_infused: req.body.is_infused,
-    flower_id: flower.id
+				is_infused: req.body.is_infused,
+				in_stock:req.body.in_stock,
+    		flower_id: flower.id
   }
       flower ?
         Flowers.addCurrent(inStock)
@@ -208,8 +209,7 @@ router.post('/preRoll', (req, res) => {
 	Flowers.findBy(name)
 		.then((flower) => {
 			const inStock = {
-				quantity: req.body.quantity,
-				is_infused: req.body.is_infused,
+				in_stock: req.body.in_stock,
 				flower_id: flower.id,
 			}
 			flower

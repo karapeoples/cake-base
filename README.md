@@ -59,3 +59,22 @@ BASE ROUTE: BASEURL/strain
 |Pre-rolls By Id |GET | /preRoll/:preRoll_id|
 |Add Pre-rolls|POST |/preRoll|
 |Delete Pre-Roll|DELETE|/preRoll/:preRoll_id|
+
+
+BASE ROUTE: BASEURL/pr
+
+|COMPANY-PREROLL-ROUTES| REQUEST TYPES | ENDPOINTS|
+|-----------|--------------|---------|
+|PreRolls| GET | /companyPR|
+|PreRolls By Name| GET | /companyPR/name/:name|
+|PreRolls By Id |GET | /companyPR/:pr_id|
+|Add PreRolls|POST|/companyPR|
+|Update PreRolls|PUT|/companyPR/:pr_id|
+
+
+|CURRENT-COMPANY-PREROLL-ROUTES| REQUEST TYPES | ENDPOINTS|
+|-----------|--------------|---------|
+|Current PreRolls| GET | /pr_stock|
+|Current PreRolls By Id |GET | /pr_stock/:currentPR_id|
+|Add Current PreRolls|POST |/pr_stock|
+|Delete Current PreRolls|DELETE|/pr_stock/:currentPR_id|

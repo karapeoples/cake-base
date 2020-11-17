@@ -51,7 +51,7 @@ async function findCurrentById(id) {
 	return await db('current_flower as c')
 		.where('c.id', id)
 		.join('flower as f', 'c.flower_id', '=', 'f.id')
-		.select('c.id as currentFlower_id', 'f.id as flower_id', 'f.*', 'c.is_infused')
+		.select('c.id as currentFlower_id', 'f.id as flower_id', 'f.*', 'c.is_infused', 'c.in_stock')
 		.first()
 }
 
@@ -71,14 +71,14 @@ async function removeCurrent(id) {
 function findpreRoll() {
 	return db('inHouse_preRoll as i')
 		.join('flower as f', 'i.flower_id', 'f.id')
-		.select('i.id as preRoll_id', 'f.id as flower_id', 'f.*', 'i.quantity')
+		.select('i.id as preRoll_id', 'f.id as flower_id', 'f.*', 'i.in_stock')
 }
 
 async function findpreRollById(id) {
 	return await db('inHouse_preRoll as i')
 		.where('i.id', id)
 		.join('flower as f', 'i.flower_id', '=', 'f.id')
-		.select('i.id as currentFlower_id', 'f.id as flower_id', 'f.*', 'i.quantity')
+		.select('i.id as currentFlower_id', 'f.id as flower_id', 'f.*', 'i.in_stock')
 		.first()
 }
 
