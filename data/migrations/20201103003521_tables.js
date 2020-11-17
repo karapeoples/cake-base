@@ -36,12 +36,12 @@ exports.up = function (knex) {
 		.createTable('current_flower', (flower) => {
 			flower.increments()
 			flower.boolean('is_infused').notNullable().defaultTo(false)
+			flower.boolean('in_stock').notNullable().defaultTo(false)
 			flower.integer('flower_id').unsigned().references('id').inTable('flower').onDelete('CASCADE').onUpdate('CASCADE')
 		})
 		.createTable('inHouse_preRoll', (pr) => {
 			pr.increments()
-			pr.integer('quantity')
-			pr.boolean('is_infused').notNullable().defaultTo(false)
+			pr.boolean('in_stock').notNullable().defaultTo(false)
 			pr.integer('flower_id').unsigned().references('id').inTable('flower').onDelete('CASCADE').onUpdate('CASCADE')
 		})
 		.createTable('company_preRoll', (pr) => {
@@ -59,7 +59,7 @@ exports.up = function (knex) {
 		.createTable('current_company_preRoll', (pr) => {
 			pr.increments()
 			pr.boolean('is_infused').notNullable().defaultTo(false)
-			pr.boolean('quantity').notNullable().defaultTo(false)
+			pr.boolean('in_stock').notNullable().defaultTo(false)
 			pr.integer('companyPreRoll_id').unsigned().references('id').inTable('company_preRoll').onDelete('CASCADE').onUpdate('CASCADE')
 	})
 }
