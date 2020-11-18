@@ -131,7 +131,7 @@ router.post('/pr_stock', (req, res) => {
 			const inStock = {
 				is_infused: req.body.is_infused,
 				in_stock: req.body.in_stock,
-				preRoll_id: preRoll.id,
+				companyPreRoll_id: pr.id,
 			}
 			pr
 				? PR.addCurrent(inStock).then((prs) => {
