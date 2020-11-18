@@ -38,14 +38,14 @@ async function update(id, changes) {
 
 function findCurrent() {
 	return db('current_company_preRoll as c')
-		.join('company_preRoll as p', 'c.preRoll_id', 'p.id')
+		.join('company_preRoll as p', 'c.companyPreRoll_id', 'p.id')
 		.select('c.id as currentPR_id', 'p.id as preRoll_id', 'p.*', 'c.is_infused')
 }
 
 async function findCurrentById(id) {
 	return await db('current_company_preRoll as c')
 		.where('c.id', id)
-		.join('company_preRoll as p', 'c.preRoll_id', '=', 'p.id')
+		.join('company_preRoll as p', 'c.companyPreRoll_id', '=', 'p.id')
 		.select('c.id as currentPR_id', 'p.id as preRoll_id', 'p.*', 'c.is_infused', 'c.in_stock')
 		.first()
 }
