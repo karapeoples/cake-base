@@ -193,7 +193,7 @@ router.get('/patient/:id', (req, res) => {
 
 router.get('/card/:id', (req, res) => {
 	const { id } = req.params
-	User.findPatientCardByPatientId(id)
+	User.findPatientCard(id)
 		.then((patients) => {
 			if (!patients) {
 				res.status(400).json({ message: `No patient with the id of ${id}` })

@@ -30,7 +30,7 @@ exports.up = function (knex) {
 			flower.integer('thc')
 			flower.integer('cbd')
 			flower.string('terps', 255)
-			flower.integer('pricePerOz').notNullable()
+			flower.integer('pricePerGram').notNullable()
 
 	})
 		.createTable('current_flower', (flower) => {
