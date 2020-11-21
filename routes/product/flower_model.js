@@ -44,7 +44,7 @@ async function update(id, changes) {
 function findCurrent() {
 	return db('current_flower as c')
 		.join('flower as f', 'c.flower_id', 'f.id')
-		.select('c.id as currentFlower_id', 'f.id as flower_id', 'f.*', 'c.is_infused')
+		.select('c.id as currentFlower_id', 'f.id as flower_id', 'f.*', 'c.is_infused', 'c.in_stock')
 }
 
 async function findCurrentById(id) {
