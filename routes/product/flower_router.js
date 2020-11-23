@@ -106,6 +106,7 @@ router.get('/flower_stock', (req, res) => {
 		})
 		.catch((error) => res.status(500).json({ errorMsg: error.message, message: 'There are no flowers!' }))
 })
+
 router.get('/flower_stock/:id', (req, res) => {
 	const { id } = req.params
 	Flowers.findCurrentById(id)

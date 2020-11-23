@@ -3,7 +3,7 @@ const router = express.Router()
 
 const PR = require('./companyPR_model.js')
 
-//Flower Database
+//PreRoll Product Database
 router.get('/companyPR', (req, res) => {
 	PR.find()
 		.then((prs) => {
@@ -93,7 +93,7 @@ router.put('/companyPR/:id', async (req, res, next) => {
 	}
 })
 
-//Current Flower Stock
+//Current Stock
 router.get('/pr_stock', (req, res) => {
 	PR.findCurrent()
 		.then((prs) => {

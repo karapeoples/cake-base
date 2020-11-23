@@ -78,3 +78,10 @@ BASE ROUTE: BASEURL/pr
 |Current PreRolls By Id |GET | /pr_stock/:currentPR_id|
 |Add Current PreRolls|POST |/pr_stock|
 |Delete Current PreRolls|DELETE|/pr_stock/:currentPR_id|
+
+BASE ROUTE: BASEURL/stock
+|PATIENT-INFO-STOCK| REQUEST TYPES | ENDPOINTS|
+|-----------|--------------|---------|
+|Current PreRolls| GET | /pr_stock|
+|Pre-rolls | GET | /preRoll|
+|Current Flower| GET | /flower_stock|

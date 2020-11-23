@@ -8,7 +8,7 @@ const authRouter = require('../routes/auth/auth_router')
 const userRouter = require('../routes/user/user_router')
 const flowerRouter = require('../routes/product/flower_router')
 const companyPRRouter = require('../routes/product/companyPR_router')
-
+const patientInfoRouter = require('../routes/product/patient_info_router')
 
 
 
@@ -17,6 +17,7 @@ server.use('/api/auth', authRouter)
 server.use('/api/user',  auth,  userRouter)
 server.use('/api/strain',  auth,  flowerRouter)
 server.use('/api/pr',  auth,  companyPRRouter)
+server.use('/api/stock',   patientInfoRouter)
 
 
 server.get('/', (req, res) => {
