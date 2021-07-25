@@ -1,5 +1,5 @@
 # cake-base
-BE
+BE for Turn-Cake App
 BASEURL: 'localhost'
 
 
