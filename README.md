@@ -1,4 +1,4 @@
-# Tun-Cake
+# cake-base
 BE
 BASEURL: 'localhost'
 
